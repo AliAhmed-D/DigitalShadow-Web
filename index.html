@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة الظل الرقمية | حلول تقنية للمستقبل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- متغيرات الألوان والإعدادات العامة --- */
+        :root {
+            --primary-color: #06b6d4; /* سماوي */
+            --primary-dark: #0891b2;
+            --secondary-color: #2563eb; /* أزرق */
+            --bg-dark: #0f172a; /* كحلي غامق */
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- التنسيقات العامة (Utilities) --- */
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+       
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            height: 4px;
+            width: 80px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- شريط التنقل (Navbar) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { color: var(--primary-color); }
+        .logo svg { width: 30px; height: 30px; stroke: var(--primary-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* --- قسم البداية (Hero Section) --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        #canvas-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* --- قسم الخدمات (Services) --- */
+        .services {
+            padding: 100px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .service-card p { color: var(--text-muted); }
+
+        /* --- قسم الإحصائيات (Stats) --- */
+        .stats {
+            padding: 60px 0;
+            background: linear-gradient(90deg, var(--bg-dark), var(--bg-card));
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        /* --- قسم عن الشركة (About) --- */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            filter: grayscale(100%);
+            transition: 0.5s;
+        }
+
+        .about-image img:hover { filter: grayscale(0%); }
+
+        .about-text { flex: 1; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .about-text p { color: var(--text-muted); margin-bottom: 20px; font-size: 1.1rem; }
+       
+        .about-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .about-list span {
+            width: 10px; height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        /* --- قسم الاتصال (Contact) --- */
+        .contact {
+            padding: 100px 0;
+            position: relative;
+            background-color: var(--bg-card);
+        }
+
+        .contact-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-dark);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+
+        label { display: block; margin-bottom: 8px; color: var(--text-muted); }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* --- التذييل (Footer) --- */
+        footer {
+            background-color: #020617;
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- التجاوب مع الشاشات (Responsive) --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+           
+            .hero h1 { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; }
+           
+            .about-content { flex-direction: column; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+           
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background-color: var(--bg-dark);
+                padding: 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+
+        /* --- تأثيرات الحركة --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+       
+        #successMessage {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            color: #4ade80;
+            text-align: center;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة العلوية -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+                الظل <span>الرقمية</span>
+            </a>
+           
+            <div class="nav-links" id="navLinks">
+                <a href="#home">الرئيسية</a>
+                <a href="#services">خدماتنا</a>
+                <a href="#about">عن الشركة</a>
+                <a href="#projects">أعمالنا</a>
+                <a href="#contact" class="btn btn-primary" style="padding: 8px 20px;">اتصل بنا</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="hero">
+        <canvas id="canvas-bg"></canvas>
+        <div class="container fade-up">
+            <span class="hero-badge">نبتكر المستقبل بصمت</span>
+            <h1>
+                نحول الأفكار إلى<br>
+                <span class="gradient-text">واقع رقمي آمن</span>
+            </h1>
+            <p>
+                في شركة الظل الرقمية، نقدم حلولاً برمجية متطورة واستشارات أمنية لحماية وتنمية أعمالك في العصر الرقمي.
+            </p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">استكشف خدماتنا</a>
+                <a href="#contact" class="btn btn-outline">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>خدماتنا المتميزة</h2>
+                <div class="divider"></div>
+                <p style="margin-top: 15px; color: var(--text-muted);">نقدم حزمة متكاملة من الخدمات الرقمية لتلبية احتياجات مشروعك.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- خدمة 1 -->
+                <div class="service-card fade-up">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3>الأمن السيبراني</h3>
+                    <p>حماية بياناتك وأنظمتك من التهديدات الرقمية بأحدث تقنيات التشفير واختبارات الاختراق.</p>
+                </div>
+
+                <!-- خدمة 2 -->
+                <div class="service-card fade-up">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3>تطوير البرمجيات</h3>
+                    <p>بناء مواقع وتطبيقات ويب وهواتف ذكية مخصصة باستخدام أحدث الأطر البرمجية.</p>
+                </div>
+
+                <!-- خدمة 3 -->
+                <div class="service-card fade-up">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3>التحول الرقمي</h3>
+                    <p>مساعدة الشركات في الانتقال إلى بيئة العمل الرقمية وتحسين كفاءة العمليات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats">
+        <div class="container stats-grid fade-up">
+            <div>
+                <span class="stat-number">+50</span>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">مشروع مكتمل</span>
+            </div>
+            <div>
+                <span class="stat-number">+20</span>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">شريك نجاح</span>
+            </div>
+            <div>
+                <span class="stat-number">24/7</span>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">دعم فني</span>
+            </div>
+            <div>
+                <span class="stat-number">100%</span>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">أمان وحماية</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن الشركة -->
+    <section id="about" class="about">
+        <div class="container about-content">
+            <div class="about-image fade-up">
+                <img src="/api/placeholder/600/400" alt="فريق العمل" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:350px;background:#1e293b;border-radius:15px;display:flex;align-items:center;justify-content:center;border:1px solid #334155;color:#64748b;flex-direction:column;\'><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'64\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'currentColor\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10\' /></svg><br>صورة عن الشركة</div>'">
+            </div>
+            <div class="about-text fade-up">
+                <h2>لماذا تختار <span style="color: var(--primary-color);">الظل الرقمية</span>؟</h2>
+                <p>
+                    نحن لسنا مجرد شركة برمجيات، بل نحن شريكك الاستراتيجي في رحلة النمو الرقمي. نعمل في الخلفية كظل يحميك ويدفعك للأمام، مع التركيز على الجودة، السرعة، والأمان.
+                </p>
+                <ul class="about-list">
+                    <li><span></span>فريق من الخبراء المعتمدين دولياً.</li>
+                    <li><span></span>استخدام أحدث التقنيات وأدوات التطوير.</li>
+                    <li><span></span>التزام تام بالمواعيد ومعايير الجودة.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-box fade-up">
+                <div class="section-title" style="margin-bottom: 30px;">
+                    <h2>ابدأ مشروعك الآن</h2>
+                    <p>تواصل معنا لمناقشة فكرتك وسنقوم بتحويلها إلى واقع.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>نوع الخدمة</label>
+                        <select>
+                            <option>تطوير موقع إلكتروني</option>
+                            <option>تطبيق هاتف</option>
+                            <option>أمن سيبراني</option>
+                            <option>أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الرسالة</label>
+                        <textarea rows="4" required></textarea>
+                    </div>
+                    <button type="submit">إرسال الرسالة</button>
+                    <div id="successMessage">تم استلام رسالتك بنجاح!</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 20px;">
+                        الظل <span>الرقمية</span>
+                    </a>
+                    <p>نحن نبني الجسور بين الخيال والواقع الرقمي. شريكك الموثوق في عالم التكنولوجيا.</p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">روابط سريعة</h4>
+                    <ul style="line-height: 2;">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#about">عن الشركة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">تواصل معنا</h4>
+                    <ul style="line-height: 2;">
+                        <li>info@digitalshadow.com</li>
+                        <li>العراق ميسان</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 شركة الظل الرقمية. جميع الحقوق محفوظة.</p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#">تويتر</a>
+                    <a href="#">لينكد إن</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تفعيل القائمة في الجوال
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // إخفاء القائمة عند الضغط على رابط
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // تأثير الظهور عند التمرير (Scroll Animation)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // معالجة نموذج الاتصال
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+           
+            btn.innerText = 'جاري الإرسال...';
+            btn.disabled = true;
+           
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        // خلفية الجزيئات المتحركة (Canvas Animation)
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const particles = [];
+        for(let i=0; i<50; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2,
+                speed: Math.random() * 0.5 + 0.1,
+                opacity: Math.random() * 0.5
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach((p, i) => {
+                p.y -= p.speed;
+                if(p.y < 0) p.y = height;
+               
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(6, 182, 212, ${p.opacity})`;
+                ctx.fill();
+
+                // رسم خطوط بين النقاط القريبة
+                particles.forEach((p2, j) => {
+                    if (i !== j) {
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if(dist < 100) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 - dist/1000})`;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            
+        });
+    </script>
+</body>
+</html>
